@@ -7,6 +7,7 @@ import torch.nn as nn
 from torch.utils.tensorboard import SummaryWriter
 from torch.utils.data import DataLoader
 from torchvision.transforms import Compose, Resize, ToTensor
+from torchvision.models import resnet18, ResNet18_Weights
 
 from sklearn.metrics import accuracy_score, confusion_matrix
 from tqdm import tqdm
@@ -78,7 +79,9 @@ def train(args):
     val_loader = DataLoader(dataset=val_set, batch_size=args.batch_size, shuffle=False, drop_last=False, num_workers=0, pin_memory=(device.type=='cuda'))
 
     # Model, Loss, Optimizer
-    model = AnimalModel(num_classes=len(train_set.classes)).to(device)
+    # model = AnimalModel(num_classes=len(train_set.classes)).to(device)
+    model = resnet18(weights=ResNet18_Weights.DEFAULT)
+    model = nn.Linear(in_features=model.fc.in_features, out_features=len(train_set.classes))
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
 
