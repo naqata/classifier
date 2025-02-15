@@ -81,7 +81,7 @@ def train(args):
     # Model, Loss, Optimizer
     # model = AnimalModel(num_classes=len(train_set.classes)).to(device)
     model = resnet18(weights=ResNet18_Weights.DEFAULT)
-    model = nn.Linear(in_features=model.fc.in_features, out_features=len(train_set.classes))
+    model.fc = nn.Linear(in_features=model.fc.in_features, out_features=len(train_set.classes))
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
 
