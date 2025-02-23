@@ -5,7 +5,7 @@ from PIL import Image
 
 # import matplotlib.pyplot as plt
 
-class AnimalDataset(Dataset):
+class ClassificationDataset(Dataset):
     def __init__(self, root, train=True, transform=None):
         self.transform = transform
         self.labels = []
@@ -49,7 +49,7 @@ class AnimalDataset(Dataset):
 #         ToTensor()
 #     ])
 
-#     train_set = AnimalDataset(root_dir, train=True, transform=transform)
+#     train_set = ClassificationDataset(root_dir, train=True, transform=transform)
     
 #     print(len(train_set))
 #     image, label = train_set[0]

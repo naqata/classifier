@@ -1,4 +1,4 @@
-from animals_model import AnimalModel
+from model import ClassifierModel
 
 import torch
 import torch.nn as nn
@@ -31,7 +31,7 @@ def preprocess_image(image_path, image_size):
 def load_model(checkpoint_dir, checkpoint_name, device):
     checkpoint = torch.load(os.path.join(checkpoint_dir, checkpoint_name), map_location=device)
     classes = checkpoint['classes']
-    model = AnimalModel(num_classes=len(classes))
+    model = ClassifierModel(num_classes=len(classes))
     model.load_state_dict(checkpoint['model'])
     model.to(device).eval()
 

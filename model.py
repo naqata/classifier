@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 # from torchsummary import summary
 
-class AnimalModel(nn.Module):
+class ClassifierModel(nn.Module):
     def __init__(self, num_classes, input_shape=(3, 224, 224)):
         super().__init__()
         self.input_shape = input_shape
@@ -84,7 +84,7 @@ class AnimalModel(nn.Module):
 # if __name__ == '__main__':
 #     num_classes = 10
 #     input_shape = (3, 224, 224)
-#     model = AnimalModel(num_classes=num_classes, input_shape=input_shape)
+#     model = ClassifierModel(num_classes=num_classes, input_shape=input_shape)
 #     print(model)
 #     summary(model, input_size=input_shape)
 

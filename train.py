@@ -1,5 +1,5 @@
-from animals_dataset import AnimalDataset
-from animals_model import AnimalModel
+from dataset import ClassificationDataset
+from model import ClassifierModel
 
 import torch
 import torch.nn as nn
@@ -72,14 +72,14 @@ def train(args):
     ])
 
     # Datasets and Loaders
-    train_set = AnimalDataset(root=args.data_path, train=True, transform=transform)
-    val_set = AnimalDataset(root=args.data_path, train=False, transform=transform)
+    train_set = ClassificationDataset(root=args.data_path, train=True, transform=transform)
+    val_set = ClassificationDataset(root=args.data_path, train=False, transform=transform)
 
     train_loader = DataLoader(dataset=train_set, batch_size=args.batch_size, shuffle=True, drop_last=True, num_workers=0, pin_memory=(device.type=='cuda'))
     val_loader = DataLoader(dataset=val_set, batch_size=args.batch_size, shuffle=False, drop_last=False, num_workers=0, pin_memory=(device.type=='cuda'))
 
     # Model, Loss, Optimizer
-    # model = AnimalModel(num_classes=len(train_set.classes)).to(device)
+    # model = ClassifierModel(num_classes=len(train_set.classes)).to(device)
     model = resnet18(weights=ResNet18_Weights.DEFAULT)
     model.fc = nn.Linear(in_features=model.fc.in_features, out_features=len(train_set.classes))
     criterion = nn.CrossEntropyLoss()
