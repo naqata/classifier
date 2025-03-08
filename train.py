@@ -151,7 +151,7 @@ def train(args):
 
         # save checkpoint 
         checkpoint = {
-            'classess': train_set.classes,
+            'classes': train_set.classes,
             'epoch': epoch + 1,
             'model': model.state_dict(),
             'optimizer': optimizer.state_dict(),
