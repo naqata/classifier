@@ -6,6 +6,7 @@ __pycache__/
 # Ignore logs and checkpoints
 logs/
 checkpoints/
+test/
 *.log
 
 # Ignore dataset and output files
